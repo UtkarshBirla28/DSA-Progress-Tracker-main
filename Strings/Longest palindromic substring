@@ -1,0 +1,32 @@
+class Solution {
+     public static String findLength(String s,int left,int right)
+   {
+       while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right))
+       {
+           left--;
+           right++;
+       }
+       return s.substring(left+1,right);
+   }
+    public String longestPalindrome(String s) {
+   String maximum="";
+
+   for(int i=0;i<s.length();i++)
+   {
+       String ans1=findLength(s,i,i);
+       String ans2=findLength(s,i,i+1);
+
+       if(ans1.length()>maximum.length())
+       {
+           maximum=ans1;
+       }
+       if(ans2.length()>maximum.length())
+       {
+           maximum=ans2;
+       }
+   }
+   return maximum;
+
+   
+    }
+}
