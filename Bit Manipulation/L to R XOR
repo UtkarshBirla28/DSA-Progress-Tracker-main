@@ -1,0 +1,24 @@
+public class Solution {
+    // Function to compute xor of number 'L' to 'R'.
+    public static int findXOR(int L, int R){
+        // Compute xor of 1 to L-1.
+        int x = xor1toN(L - 1);
+
+        // Compute xor of 1 to R.
+        int y = xor1toN(R);
+        return x ^ y;
+    }
+    // Function to compute xor of number 1 to 'N'.
+    public static int xor1toN(int N)
+    {
+        if (N % 4 == 0)
+            return N;
+        if (N % 4 == 1)
+            return 1;
+        if (N % 4 == 2)
+            return N + 1;
+        if (N % 4 == 3)
+            return 0;
+        return -1;
+    }
+}
