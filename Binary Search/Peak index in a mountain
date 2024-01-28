@@ -1,0 +1,28 @@
+class Solution {
+    public int peakIndexInMountainArray(int[] arr) {
+        
+        return findPeak(arr,0,arr.length-1,0);
+    }
+
+    public int findPeak(int[] arr,int start,int end,int ans)
+    {
+        if(start>end)
+        {
+            return ans;
+        }
+
+        int mid = start+(end-start)/2;
+
+        if(arr[mid]<arr[mid+1])
+        {
+            return findPeak(arr,mid+1,end,ans);
+        }
+        else 
+        {
+            ans=mid;
+            return findPeak(arr,start,mid-1,ans);
+        }
+
+
+    }
+}
