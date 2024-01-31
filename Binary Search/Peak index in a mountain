@@ -1,28 +1,25 @@
 class Solution {
-    public int peakIndexInMountainArray(int[] arr) {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
         
-        return findPeak(arr,0,arr.length-1,0);
+        int s = 0;
+        int e = arr.size() -1;
+        int mid = s+(e-s)/2;
+
+        while(s<e)
+        {
+            
+
+            if(arr[mid] < arr[mid+1])
+            {
+                s=mid+1;
+            }
+            else
+            {
+                e=mid;
+            }
+            mid=s+(e-s)/2;
+        }
+        return s;
     }
-
-    public int findPeak(int[] arr,int start,int end,int ans)
-    {
-        if(start>end)
-        {
-            return ans;
-        }
-
-        int mid = start+(end-start)/2;
-
-        if(arr[mid]<arr[mid+1])
-        {
-            return findPeak(arr,mid+1,end,ans);
-        }
-        else 
-        {
-            ans=mid;
-            return findPeak(arr,start,mid-1,ans);
-        }
-
-
-    }
-}
+};
