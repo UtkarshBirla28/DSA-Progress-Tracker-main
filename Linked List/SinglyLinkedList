@@ -1,0 +1,119 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class singlyLinkedList {
+    static Node head, tail;
+
+    static void insertAtHead(int data) {
+        Node temp = new Node(data);
+        if(head==null){
+            head = tail = temp;
+            return;
+           }
+        temp.next = head;
+        head = temp;
+    }
+
+    static void insertAtTail(int data) {
+        Node temp = new Node(data);
+        if(head==null){
+            head = tail = temp;
+            return;
+           }
+        tail.next = temp;
+        tail = temp;
+    }
+
+    static void insertAtPosition(int position, int data) {
+        Node temp = head;
+
+        if (position == 1) {
+            insertAtHead(data);
+            return;
+        }
+
+        int count = 1;
+
+        while (count < position - 1) {
+            temp = temp.next;
+            count++;
+        }
+
+        if(temp == null || temp.next == null){
+            insertAtTail(data);
+            return;
+            }
+        Node curr = new Node(data);
+        curr.next = temp.next;
+        temp.next = curr;
+    }
+    static void deleteNode(int position){
+        if(position == 1){
+            // deletion at start 
+            head = head.next;
+        }
+        else if(position<=getLength(head)){
+            // deletion at middle or end pos
+            Node curr = head;
+            Node prev = null;
+            int count=1;
+
+            while(count< position){
+                prev = curr;
+                curr = curr.next;
+                count++;
+            }
+
+            prev.next = curr.next;
+            if(prev.next==null){
+                tail = prev;
+            }
+        }
+        else
+        System.out.println("Please enter a valid position");
+    }
+
+    static void printList(Node head) {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    static int getLength(Node head) { 
+        Node temp = head;
+        int length = 0;
+
+        while (temp != null) {
+           length++;
+            temp = temp.next;
+        }
+
+        return length;
+    }
+
+    public static void main(String[] args) {
+        // Node n1 = new Node(54);
+        // head = n1;
+        // tail = n1;
+
+        insertAtHead(30);
+        insertAtHead(10);
+        insertAtPosition(3, 5);
+        insertAtTail(23);
+        insertAtTail(45);
+        deleteNode(4);
+        deleteNode(5);
+        System.out.println(tail.data);
+        
+        printList(head);
+    }
+}
